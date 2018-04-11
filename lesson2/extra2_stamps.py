@@ -13,19 +13,19 @@
 
 def stamps(n):
     # Your code here
-	5p = 0
-	2p = 0
-	1p = 0
+	fivep = 0
+	twop = 0
+	onep = 0
 	while n >= 5:
 		n = n - 5
-		5p = 5p + 1
+		fivep = fivep + 1
 	while n >= 2:
 		n = n - 2
-		2p = 2p + 1
+		twop = twop + 1
 	while n >= 1:
 		n = n - 1
-		1p = 1p + 1
-	return (5p, 2p, 1p)
+		onep = onep + 1
+	return (fivep, twop, onep)
 
 
 print stamps(8)
