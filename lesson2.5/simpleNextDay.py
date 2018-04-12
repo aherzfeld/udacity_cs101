@@ -17,21 +17,16 @@ def nextDay(year, month, day):
     # input error test
     if month < 1 or month > 12:
     	print 'Please input month 1-12'
-    	break
     if day < 1 or day > 30:
     	print 'Please input day 1-30'
     #date modifiers
-    if day == 30:
-    	day = 1
-    else: 
-    	day = day + 1	
-    if month == 12 and day ==1:
-    	month = 1
-    elif day == 1:
-    	month = month + 1
-    if month == 1 and day == 1:
-    	year = year + 1
-    return (year, month, day)
+    if day < 30:
+    	return (year, month, day + 1)
+    else:
+    	if month < 12:
+    		return (year, month + 1, 1)
+    	else:
+    		return (year + 1, 1, 1)
     
 print nextDay(2012, 11, 1)
 print nextDay(2000, 12, 30)
