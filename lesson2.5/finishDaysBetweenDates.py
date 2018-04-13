@@ -35,7 +35,9 @@ def isLeapYear(year):
     return False
 
 def daysInMonth(year, month):
-    return 30
+    nonLeap = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    leap = []
+    return nonLeap[month -1]
 
 def daysBetweenDates(year1, month1, day1, year2, month2, day2):
     """Returns the number of days between year1/month1/day1
