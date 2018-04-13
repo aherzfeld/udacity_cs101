@@ -6,7 +6,7 @@
 
 def nextDay(year, month, day):
     """Simple version: assume every month has 30 days"""
-    if day < 30:
+    if day < daysInMonth(year, month):
         return year, month, day + 1
     else:
         if month == 12:
@@ -33,6 +33,9 @@ def isLeapYear(year):
     if year%4 == 0:
         return True
     return False
+
+def daysInMonth(year, month):
+    return 30
 
 def daysBetweenDates(year1, month1, day1, year2, month2, day2):
     """Returns the number of days between year1/month1/day1
