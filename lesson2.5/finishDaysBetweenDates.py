@@ -25,6 +25,15 @@ def dateIsBefore(year1, month1, day1, year2, month2, day2):
             return day1 < day2
     return False        
 
+def isLeapYear(year):
+    #returns True is year is a leap year, otherwise returns False
+    if year%100 == 0:
+        if year%400 != 0:
+            return False
+    if year%4 == 0:
+        return True
+    return False
+
 def daysBetweenDates(year1, month1, day1, year2, month2, day2):
     """Returns the number of days between year1/month1/day1
        and year2/month2/day2. Assumes inputs are valid dates
