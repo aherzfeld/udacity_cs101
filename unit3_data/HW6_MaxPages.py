@@ -71,25 +71,22 @@ def get_all_links(page):
 def crawl_web(seed, max_pages):
     tocrawl = [seed]
     crawled = []
-    pages_crawled = 0
-    while tocrawl:
-        if pages_crawled < max_pages:
-            page = tocrawl.pop()
-            if page not in crawled:
-                union(tocrawl, get_all_links(get_page(page)))
-                crawled.append(page)
-                pages_crawled = pages_crawled + 1
+    while tocrawl and len(crawled) < max_pages:
+        page = tocrawl.pop()
+        if page not in crawled:
+            union(tocrawl, get_all_links(get_page(page)))
+            crawled.append(page)
     return crawled
 
-#print crawl_web("http://www.udacity.com/cs101x/index.html",1) 
+print crawl_web("http://www.udacity.com/cs101x/index.html",1) 
 #>>> ['http://www.udacity.com/cs101x/index.html']
 
-# print crawl_web("http://www.udacity.com/cs101x/index.html",3) 
+print crawl_web("http://www.udacity.com/cs101x/index.html",3) 
 #>>> ['http://www.udacity.com/cs101x/index.html', 
 #>>> 'http://www.udacity.com/cs101x/flying.html', 
 #>>> 'http://www.udacity.com/cs101x/walking.html']
 
-#print crawl_web("http://www.udacity.com/cs101x/index.html",500) 
+print crawl_web("http://www.udacity.com/cs101x/index.html",500) 
 #>>> ['http://www.udacity.com/cs101x/index.html', 
 #>>> 'http://www.udacity.com/cs101x/flying.html', 
 #>>> 'http://www.udacity.com/cs101x/walking.html', 
