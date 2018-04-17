@@ -6,17 +6,19 @@
 
 def product_list(list_of_numbers):
 
+    result = 1
+    
+    for e in list_of_numbers:
+        result = result * e
+    return result
 
 
 
-
-
-
-#print product_list([9])
+print product_list([9])
 #>>> 9
 
-#print product_list([1,2,3,4])
+print product_list([1,2,3,4])
 #>>> 24
 
-#print product_list([])
+print product_list([])
 #>>> 1
