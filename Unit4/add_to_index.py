@@ -16,17 +16,18 @@
 index = []
 
 def add_to_index(index,keyword,url):
-    if keyword not in index:
-        index.append([keyword, [url]])
-    else:    
-        index.index(keyword)
+	for entry in index:
+		if entry[0] == keyword:
+			entry[1].append(url)
+			return
+	index.append([keyword, [url]])
+			
 
 
 
-
-#add_to_index(index,'udacity','http://udacity.com')
-#add_to_index(index,'computing','http://acm.org')
-#add_to_index(index,'udacity','http://npr.org')
-#print index
+add_to_index(index,'udacity','http://udacity.com')
+add_to_index(index,'computing','http://acm.org')
+add_to_index(index,'udacity','http://npr.org')
+print index
 #>>> [['udacity', ['http://udacity.com', 'http://npr.org']], 
 #>>> ['computing', ['http://acm.org']]]
