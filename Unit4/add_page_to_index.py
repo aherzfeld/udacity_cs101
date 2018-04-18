@@ -23,10 +23,7 @@ def add_to_index(index,keyword,url):
 def add_page_to_index(index,url,content):
 	wordList = content.split()
 	for word in wordList:
-		for entry in index:
-			if entry[0] == word:
-				entry[1].append(word)
-		index.append([word, [url]])
+	    add_to_index(index, word, url)
 	
 
 
