@@ -24,6 +24,27 @@
 # Often bandwidth is given in megabits (Mb) per second whereas file size 
 # is given in megabytes (MB).
 
+def convert_seconds(n):
+	str_hours = ' hours'
+	str_min = ' minutes'
+	str_sec = ' seconds'
+	
+	hour, rest = n / 3600, n % 3600
+	hour = int(hour)
+	if hour == 1:
+		str_hours = ' hour'
+		
+	minute = rest / 60
+	minute = int(minute)
+	if minute == 1:
+		str_minute = ' minute'
+		
+	sec = rest % 60
+	if sec == 1:
+		str_sec = ' second'
+		
+	return str(hour) + ', ' + str(minute)+ ', ' + str(sec) + str_sec
+
 def download_time(fileSize, funits, bw, bwUnits):
 	index = [['kb', 2 ** 10],
 	['kB', 2 ** 10 * 8],
@@ -44,8 +65,11 @@ def download_time(fileSize, funits, bw, bwUnits):
 			conversion_bw = e[1]
 	#print conversion_size, conversion_bw 
 	dl_speed_secs = (fileSize * conversion_size) / (bw * conversion_bw)
-	print dl_speed_secs
-
+	
+	return convert_seconds(dl_speed_secs)
+	
+	
+	
 print download_time(1024,'kB', 1, 'MB')
 #>>> 0 hours, 0 minutes, 1 second
 
