@@ -43,7 +43,7 @@ def convert_seconds(n):
 	if sec == 1:
 		str_sec = ' second'
 		
-	return str(hour) + ', ' + str(minute)+ ', ' + str(sec) + str_sec
+	return str(hour) + str_hours + ', ' + str(minute) + str_min + ', ' + str(sec) + str_sec
 
 def download_time(fileSize, funits, bw, bwUnits):
 	index = [['kb', 2 ** 10],
