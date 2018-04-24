@@ -10,7 +10,15 @@
 # Make sure that you return the new htable
 
 def hashtable_update(htable,key,value):
-    # Your code here
+    oldValue = hashtable_lookup(htable, key)
+    if oldValue != value:
+    	bucket = hashtable_get_bucket(htable, key)
+    	for e in bucket:
+    		if e[0] == key:
+    			e.pop()
+    			e.append(value)
+    if hashtable_lookup(htable, key) == None:
+    	hashtable_add(htable, key, value)
     return htable
 
 def hashtable_lookup(htable,key):
@@ -44,10 +52,10 @@ def make_hashtable(nbuckets):
 table = [[['Ellis', 11], ['Francis', 13]], [], [['Bill', 17], ['Zoe', 14]],
 [['Coach', 4]], [['Louis', 29], ['Nick', 2], ['Rochelle', 4]]]
 
-#hashtable_update(table, 'Bill', 42)
-#hashtable_update(table, 'Rochelle', 94)
-#hashtable_update(table, 'Zed', 68)
-#print table
+hashtable_update(table, 'Bill', 42)
+hashtable_update(table, 'Rochelle', 94)
+hashtable_update(table, 'Zed', 68)
+print table
 #>>> [[['Ellis', 11], ['Francis', 13]], [['Zed', 68]], [['Bill', 42], 
 #>>> ['Zoe', 14]], [['Coach', 4]], [['Louis', 29], ['Nick', 2], 
 #>>> ['Rochelle', 94]]]
