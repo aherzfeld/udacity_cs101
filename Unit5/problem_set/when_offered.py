@@ -80,7 +80,6 @@ def involved(courses, person):
 	for entry in involved_in:
 		if involved_in[entry] == []:
 			del_list.append(entry)
-			#del involved_in[entry]
 	for empty in del_list:
 		del involved_in[empty]
 	return involved_in
