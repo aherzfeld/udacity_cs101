@@ -16,9 +16,7 @@ def crawl_web(seed): # returns index, graph of outlinks
             content = get_page(page)
             add_page_to_index(index, page, content)
             outlinks = get_all_links(content)
-            
-            #Insert Code Here
-            
+            graph[page] = outlinks
             union(tocrawl, outlinks)
             crawled.append(page)
     return index, graph
@@ -202,3 +200,6 @@ if 'http://udacity.com/cs101x/urank/index.html' in graph:
 #'http://udacity.com/cs101x/urank/kathleen.html',
 #'http://udacity.com/cs101x/urank/nickel.html',
 #'http://udacity.com/cs101x/urank/zinc.html']
+
+
+
