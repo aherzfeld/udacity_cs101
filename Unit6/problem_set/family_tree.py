@@ -24,12 +24,13 @@ ada_family = { 'Judith Blunt-Lytton': ['Anne Isabella Blunt', 'Wilfrid Scawen Bl
 # does not matter and duplicates will be ignored.
 
 def ancestors(genealogy, person):
-	family = []
-	if person not in genealogy:
-		return family
-	for parent in genealogy[person]:
-		family = family + genealogy[person] + ancestors(genealogy, parent)
-	return family
+	if person in genealogy:
+		parents = genealogy[person]
+		result = parents
+		for parent in parents:
+			result = result + ancestors(genealogy, parent)
+		return result
+	return []
 # Here are some examples:
 
 print ancestors(ada_family, 'Augusta Ada King')
@@ -41,6 +42,6 @@ print ancestors(ada_family, 'Judith Blunt-Lytton')
 #    'William King-Noel', 'Anne Isabella Milbanke', 'George Gordon Byron',
 #    'Catherine Gordon', 'Captain John Byron']
 
-#print ancestors(ada_family, 'Dave')
+print ancestors(ada_family, 'Dave')
 #>>> []
 
