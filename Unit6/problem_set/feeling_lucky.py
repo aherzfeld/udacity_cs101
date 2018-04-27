@@ -10,15 +10,14 @@
 #appear in the index, lucky_search should return None.
 
 def lucky_search(index, ranks, keyword):
-	score = 0
-	best = 0
-	if lookup(index, keyword):
-		for url in lookup(index, keyword):
-			if ranks[url] > score:
-				score = ranks[url]
-				best = url    
-		return best
-	return None
+    pages = lookup(index, keyword)
+    if not pages:    	
+	    return None
+	best_page = pages[0]
+	for candidate in pages:
+	    if ranks[candidate] > ranks[best_page]:
+	        best_page = candidate
+	return best_page    
 
 cache = {
    'http://udacity.com/cs101x/urank/index.html': """<html>
