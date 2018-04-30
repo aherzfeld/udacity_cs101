@@ -32,8 +32,35 @@
 # is not usually a good choice, since it means if the input list is already
 # nearly sorted, the actual work will be much worse than expected).
 
-def ordered_search(index, ranks, keyword):
+import random
 
+def quick_sort(p):
+	if len(p) <= 1:
+		return p
+	else:
+		#select random value of the list as pivot
+		pivot = p.pop(random.randint(0, len(p)-1))
+		# separate values smaller than pivot from those bigger or equal than the pivot
+		less, greater = [], []
+		for e in p:
+			if e[1] < pivot[1]:
+				less.append(e)
+			else:
+				greater.append(e)
+			
+		# concat sorted smaller values + pivot + sorted greater values
+		return quick_sort(less) + [pivot] + quick_sort(greater)
+
+def ordered_search(index, ranks, keyword):
+	url_list = []
+	if keyword in index:
+		for url in index[keyword]:
+			url_list.append((url, ranks[url]))
+		sorted_urls = quick_sort(url_list)
+		sorted_urls.reverse()
+		ranked_list = [x[0] for x in sorted_urls]
+		return ranked_list
+	return None
 
 
 cache = {
@@ -251,20 +278,20 @@ def compute_ranks(graph):
 index, graph = crawl_web('http://udacity.com/cs101x/urank/index.html')
 ranks = compute_ranks(graph)
 
-#print ordered_search(index, ranks, 'Hummus')
+print ordered_search(index, ranks, 'Hummus')
 #>>> ['http://udacity.com/cs101x/urank/kathleen.html',
 #    'http://udacity.com/cs101x/urank/nickel.html',
 #    'http://udacity.com/cs101x/urank/arsenic.html',
 #    'http://udacity.com/cs101x/urank/hummus.html',
 #    'http://udacity.com/cs101x/urank/index.html']
 
-#print ordered_search(index, ranks, 'the')
+print ordered_search(index, ranks, 'the')
 #>>> ['http://udacity.com/cs101x/urank/nickel.html',
 #    'http://udacity.com/cs101x/urank/arsenic.html',
 #    'http://udacity.com/cs101x/urank/hummus.html',
 #    'http://udacity.com/cs101x/urank/index.html']
 
 
-#print ordered_search(index, ranks, 'babaganoush')
+print ordered_search(index, ranks, 'babaganoush')
 #>>> None
 
