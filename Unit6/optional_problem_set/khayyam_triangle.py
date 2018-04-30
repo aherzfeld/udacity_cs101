@@ -25,7 +25,7 @@
 # returned list should be a list of the numbers at the corresponding row in the
 # triangle.
 
-
+#recursive solution
 def triangle(n):
 	if n == 0:
 		return []
@@ -36,6 +36,23 @@ def triangle(n):
 	new_row = [a + b for (a,b) in zip(row + [0], [0] + row)]
 	return old_triangle + [new_row]
 
+#iterative solution
+def triangle(n):
+    result = []
+    current = [1]
+    for unused in range(0,n):
+        result.append(current)
+        current = make_next_row(current)
+    return result
+    
+def make_next_row(row):
+    result = []
+    prev = 0
+    for e in row:
+        result.append(e + prev)
+        prev = e
+    result.append(prev)
+    return result
 
 
 #For example:
