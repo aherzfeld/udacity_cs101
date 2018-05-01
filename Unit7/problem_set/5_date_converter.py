@@ -30,6 +30,10 @@ def date_converter(language, date):
 	year = date[secondDash +1: ]
 	return day + ' ' + month + ' ' + year
 
+def date_converter2(language, date):
+    month, day, year = date.split('/')
+    return day + ' ' + language[int(month)] + ' ' + year
+
 print date_converter(english, '5/11/2012')
 #>>> 11 May 2012
 
