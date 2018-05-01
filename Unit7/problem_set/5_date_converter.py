@@ -25,8 +25,8 @@ swedish = {1:"januari", 2:"februari", 3:"mars", 4:"april", 5:"maj",
 def date_converter(language, date):
 	firstDash = date.find('/')
 	secondDash = date.find('/', firstDash +1)
-	day = date[ :firstDash]
-	month = language[int(date[firstDash +1: secondDash])]
+	month = language[int(date[ :firstDash])]
+	day = date[firstDash +1: secondDash]
 	year = date[secondDash +1: ]
 	return day + ' ' + month + ' ' + year
 
