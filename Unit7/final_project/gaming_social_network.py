@@ -99,6 +99,7 @@ def extract_name(data):
 	name = data[ : end_name]
 	return name
 
+#returns a list of connections
 def extract_connections(data):
 	start = data.find('connected to ') + 13
 	end = data.find('.')
@@ -106,6 +107,7 @@ def extract_connections(data):
 	connections = raw_string.split(',')
 	return connections
 	
+#returns a list of games liked and and end location
 def extract_games(data):
 	start = data.find('to play ') + 8
 	end = data.find('.', start)
@@ -116,8 +118,14 @@ def extract_games(data):
 def create_data_structure(data):
 	network = {}	
 	while True:
-		name = get_name(data)
-			
+		name = extract_name(data)
+		if name:
+			connections = extract_connections(data)
+			games, endpos = extract_games(data)
+			network[name] = [connections, games]
+			data = data[endpos +1 : ]
+		else:
+			break
 	return network
 
 # ----------------------------------------------------------------------------- # 
@@ -288,6 +296,4 @@ def find_path_to_friend(network, user_A, user_B):
 #print count_common_connections(net, "Mercedes", "John")
 #print find_path_to_friend(net, "John", "Ollie")
 
-print extract_name(example_input)
-print extract_connections(example_input)
-print extract_games(example_input)
+print create_data_structure(example_input)
