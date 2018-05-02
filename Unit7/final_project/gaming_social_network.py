@@ -105,6 +105,7 @@ def extract_connections(data):
 	end = data.find('.')
 	raw_string = data[start : end]
 	connections = raw_string.split(',')
+	connections = [c.lstrip() for c in connections]# bug fix attempt
 	return connections
 	
 #returns a list of games liked and and end location
@@ -113,6 +114,7 @@ def extract_games(data):
 	end = data.find('.', start)
 	raw_string = data[start : end]
 	games = raw_string.split(',')
+	games = [g.lstrip() for g in games]
 	return games, end
 
 #takes an input string and returns a dictionary (network) containing names as keys
@@ -236,9 +238,7 @@ def get_secondary_connections(network, user):
 			return []
 		else:
 			for e in network[user][0]:#for each of the users connections
-				print e#test
 				for e2 in network[e][0]:#for	each of the secondary connections
-					print e2#test
 					if e2 not in secondary_connections:#checking for duplicates
 						secondary_connections.append(e2)
 			return secondary_connections
@@ -314,7 +314,7 @@ print net
 #print add_connection(net, "John", "Freda")
 #print add_new_user(net, "Debra", []) 
 #print add_new_user(net, "Nick", ["Seven Schemers", "The Movie: The Game"]) # True
-print get_secondary_connections(net, "Mercedes")
+#print get_secondary_connections(net, "Mercedes")
 #print count_common_connections(net, "Mercedes", "John")
 #print find_path_to_friend(net, "John", "Ollie")
 
