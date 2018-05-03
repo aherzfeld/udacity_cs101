@@ -108,6 +108,7 @@ def find_path_to_friend(network, user_A, user_B):
 	return None
 
 
+#returns most popular game and the number of likes
 def most_popular_game(network):
     games_liked = {}#dict containing games: # of likes
     for user in network:
@@ -116,7 +117,7 @@ def most_popular_game(network):
                 games_liked[game] = 1
             else:
                 games_liked[game] += 1
-    return max(games_liked, key=games_liked.get)
+    return max(games_liked, key=games_liked.get), games_liked[game]
 
 #modifying the data
 
