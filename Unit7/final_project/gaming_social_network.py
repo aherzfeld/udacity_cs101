@@ -120,7 +120,7 @@ def extract_games(data):
 #takes an input string and returns a dictionary (network) containing names as keys
 #with a list of connections and a list of games liked as values
 def create_data_structure(data):
-	network = {}	
+	network = {}
 	while True:
 		name = extract_name(data)
 		if name:
@@ -300,13 +300,33 @@ def count_common_connections(network, user_A, user_B):
 #   in this procedure to keep track of nodes already visited in your search. You 
 #   may safely add default parameters since all calls used in the grading script 
 #   will only include the arguments network, user_A, and user_B.
+"""
 def find_path_to_friend(network, user_A, user_B):
 	if user_A in network and user_B in network:
 		if user_B in network[user_A][0]:
 			return [user_A] + [user_B]
 		else:
 			for e in network[user_A][0]:
-				return [user_A] + find_path_to_friend(network, e, user_B)
+				path = find_path_to_friend(network, e, user_B) #testing
+				if path != None:
+					return [user_A] + path#find_path_to_friend(network, e, user_B)
+	return None
+"""
+
+def find_path_to_friend(network, user_A, user_B):
+	if user_A in network and user_B in network:
+		if user_B in network[user_A][0]:
+			return [user_A, user_B]
+		if network[user_A][-1] != 'scanned':
+			network[user_A].append('scanned')
+		for name in network[user_A][0]:
+			if network[name][-1] != 'scanned':
+				path_name = find_path_to_friend(network, name, user_B)
+				if path_name != None:
+					for entry in network:
+						if network[entry][-1] == 'scanned':
+							network[entry].pop()
+					return [user_A] + path_name
 	return None
 
 # Make-Your-Own-Procedure (MYOP)
