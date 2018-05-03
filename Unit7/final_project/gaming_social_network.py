@@ -297,7 +297,12 @@ def count_common_connections(network, user_A, user_B):
 #   may safely add default parameters since all calls used in the grading script 
 #   will only include the arguments network, user_A, and user_B.
 def find_path_to_friend(network, user_A, user_B):
-	# your RECURSIVE solution here!
+	if user_A in network and user_B in network:
+		if user_B in network[user_A][0]:
+			return [user_A] + [user_B]
+		else:
+			for e in network[user_A][0]:
+				return [user_A] + find_path_to_friend(network, e, user_B)
 	return None
 
 # Make-Your-Own-Procedure (MYOP)
@@ -320,5 +325,5 @@ print net
 #print get_secondary_connections(net, "Mercedes")
 #print count_common_connections(net, "Mercedes", "John")
 #print find_path_to_friend(net, "John", "Ollie")
-
+#print find_path_to_friend(net, 'Mercedes', 'Levi')
 #print create_data_structure(example_input)
