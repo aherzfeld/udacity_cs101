@@ -314,6 +314,18 @@ def find_path_to_friend(network, user_A, user_B):
 # Replace this with your own procedure! You can also uncomment the lines below
 # to see how your code behaves. Have fun!
 
+#returns the most popular game and the # of likes
+def most_popular_game(network):
+    games_liked = {}#dict containing games: # of likes
+    for user in network:
+        for game in network[user][1]:
+            if game not in games_liked:
+                games_liked[game] = 1
+            else:
+                games_liked[game] += 1
+    return max(games_liked, key=games_liked.get), games_liked[game]
+
+
 net = create_data_structure(example_input)
 print net
 #print get_connections(net, "Debra")
@@ -327,3 +339,4 @@ print net
 #print find_path_to_friend(net, "John", "Ollie")
 #print find_path_to_friend(net, 'Mercedes', 'Levi')
 #print create_data_structure(example_input)
+#print most_popular_game(net)
